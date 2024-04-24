@@ -6,6 +6,9 @@ class UserModel {
   /// The id of the user
   final String id;
 
+  /// The name of the user
+  final String name;
+
   /// When the user first uploaded a quiz
   final DateTime createdAt;
 
@@ -17,6 +20,7 @@ class UserModel {
 
   UserModel({
     required this.id,
+    required this.name,
     required this.createdAt,
     required this.quizzes,
     required this.points,
@@ -25,6 +29,7 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'user_id': id,
+      'username': name,
       'created_at': createdAt.millisecondsSinceEpoch,
       'quizzes': quizzes.map((x) => x.toMap()).toList(),
       'points': points,
@@ -35,6 +40,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['user_id'] as String,
+      name: map['username'] as String,
       createdAt: DateTime.parse(map['created_at'] as String),
       quizzes: List<QuizModel>.from(
         (map['quizzes'] as List).map<QuizModel>(
@@ -51,6 +57,7 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> source) {
     return UserModel(
       id: source['user_id'] as String,
+      name: source['username'] as String,
       createdAt: DateTime.parse(source['created_at'] as String),
       quizzes: List<QuizModel>.from(
         (source['quizzes'] as List).map<QuizModel>(
@@ -60,4 +67,8 @@ class UserModel {
       points: source['points'] as int,
     );
   }
+
+  @override
+  String toString() =>
+      'UserModel(id: $id, name: $name, createdAt: $createdAt, quizzes: $quizzes, points: $points)';
 }

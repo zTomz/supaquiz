@@ -77,7 +77,6 @@ class QuizEndPage extends StatelessWidget {
                 ],
               ),
               onTap: () async {
-                // TODO: Upload to database
                 await context.read<QuizProvider>().uploadQuizToDatabase(
                       quiz: quizProvider.quiz!,
                     );

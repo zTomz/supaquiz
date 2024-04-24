@@ -56,8 +56,6 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
 
-    context.read<UserProvider>().eitherFailureOrUsers();
-
     // If user is not signed in, send to auth page
     if (supabase.auth.currentUser == null) {
       appRouter.push(const AuthRoute());
