@@ -8,7 +8,6 @@ import '../../../../core/config/utils/resources/supabase.dart';
 import '../models/quiz_model.dart';
 import '../params/quiz_params.dart';
 
-
 abstract class QuizRemoteDataSource {
   Future<QuizModel> getQuiz({required QuizParams params});
 
@@ -44,6 +43,8 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
 
   @override
   Future<QuizModel> uploadQuizToDatabase({required QuizModel quiz}) async {
+    final username = supabase.auth.currentUser!.userMetadata!['username'];
+
     try {
       // Check if a row with the same id already exists
       final t = await supabase
@@ -56,6 +57,7 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
           'quizzes': [
             quiz.toJson(),
           ],
+          'username': username,
         });
       } else {
         await supabase.from('users').update({
@@ -63,6 +65,7 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
             ...t.first['quizzes'],
             quiz.toJson(),
           ],
+          'username': username,
         }).match({'user_id': supabase.auth.currentUser!.id});
       }
     } on PostgrestException catch (e) {
@@ -79,6 +82,8 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
 
   @override
   Future<void> updatePoints({required int offsetPoints}) async {
+    final username = supabase.auth.currentUser!.userMetadata!['username'];
+
     try {
       // Check if a row with the same id already exists
       final t = await supabase
@@ -89,18 +94,19 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
       if (t.isEmpty) {
         await supabase.from('users').insert({
           'points': offsetPoints,
+          'username': username,
         });
       } else {
         await supabase.from('users').update({
           'points': t.first['points'] + offsetPoints,
+          'username': username,
         }).match({'user_id': supabase.auth.currentUser!.id});
       }
     } on PostgrestException catch (e) {
       throw ServerException(message: e.message);
     } catch (e) {
       // If an unexpected error occurs, print the type of the error
-      debugPrint(
-          "Error with updatePoints: $e, Error type: ${e.runtimeType}");
+      debugPrint("Error with updatePoints: $e, Error type: ${e.runtimeType}");
       throw const ServerException();
     }
   }
