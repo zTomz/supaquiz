@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../provider/user_provider.dart';
 import '../widgets/leaderboard_list_tile.dart';
-import '../widgets/loadin_indicator.dart';
+import '../../../../core/config/utils/widgets/loading_indicator.dart';
 
 @RoutePage()
 class LeaderboardPage extends StatefulWidget {

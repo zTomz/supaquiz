@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/config/utils/constants/numbers.dart';
+import '../constants/numbers.dart';
 
 class LoadingIndicator extends StatelessWidget {
   final String? message;

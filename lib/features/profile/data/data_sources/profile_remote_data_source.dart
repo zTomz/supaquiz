@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../../core/config/utils/errors/exeptions.dart';
+import '../../../../core/config/utils/resources/supabase.dart';
+
+abstract class ProfileRemoteDataSource {
+  Future<void> updateProfile({required String username});
+
+  Future<void> deleteUserData();
+}
+
+class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
+  @override
+  Future<void> updateProfile({required String username}) async {
+    try {
+      // Update the user in Supabase Auth
+      await supabase.auth.updateUser(
+        UserAttributes(
+          data: {'username': username},
+        ),
+      );
+
+      // Update the user in Supabase Database
+      await supabase.from('users').update({'username': username}).eq(
+        'user_id',
+        supabase.auth.currentUser!.id,
+      );
+    } on PostgrestException catch (e) {
+      throw ServerException(message: e.message);
+    } catch (e) {
+      // If an unexpected error occurs, print the type of the error
+      debugPrint(
+          "Error with updating profile: $e, Error type: ${e.runtimeType}");
+      throw const ServerException();
+    }
+  }
+
+  @override
+  Future<void> deleteUserData() async {
+    try {
+      // Delete the user from Supabase Database
+      await supabase.from('users').delete().eq(
+            'user_id',
+            supabase.auth.currentUser!.id,
+          );
+    } on PostgrestException catch (e) {
+      throw ServerException(message: e.message);
+    } catch (e) {
+      // If an unexpected error occurs, print the type of the error
+      debugPrint(
+          "Error with deleting profile: $e, Error type: ${e.runtimeType}");
+      throw const ServerException();
+    }
+  }
+}
