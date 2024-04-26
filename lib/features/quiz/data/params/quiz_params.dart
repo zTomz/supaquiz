@@ -16,11 +16,15 @@ class QuizParams {
   /// The type of the questions to retrieve
   final QuizType? type;
 
+  /// The session token
+  final String? sessionToken;
+
   const QuizParams({
     this.number = 10,
     this.category,
     this.difficulty,
     this.type,
+    this.sessionToken,
   })  : assert(number >= 1, 'Number must be greater than or equal to 1'),
         assert(number <= 50, 'Number must be less than or equal to 50');
 
@@ -39,6 +43,10 @@ class QuizParams {
 
     if (type != null) {
       paramMap['type'] = type!.value;
+    }
+
+    if (sessionToken != null) {
+      paramMap['token'] = sessionToken;
     }
 
     return paramMap;

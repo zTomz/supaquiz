@@ -16,6 +16,8 @@ abstract class QuizRepository {
   });
 
   Future<Either<Failure, void>> updatePoints({required int offsetPoints});
+
+  Future<Either<Failure, void>> loadSessionToken();
 }
 
 class QuizRepositoryImpl implements QuizRepository {
@@ -69,6 +71,27 @@ class QuizRepositoryImpl implements QuizRepository {
       return Left(
         ServerFailure(
           errorMessage: e.message ?? 'Failed to update points on the server.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> loadSessionToken() async {
+    try {
+      await remoteDataSource.loadSessionToken();
+
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          errorMessage: e.message ?? 'Failed to load session token.',
+        ),
+      );
+    } catch (e) {
+      return Left(
+        ServerFailure(
+          errorMessage: 'Failed to load session token.',
         ),
       );
     }

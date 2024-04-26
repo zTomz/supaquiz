@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/errors/failure.dart';
+import '../../../../core/utils/resources/session_token.dart';
 import '../../data/data_sources/quiz_remote_data_source.dart';
 import '../../data/models/question_model.dart';
 import '../../data/models/quiz_info_model.dart';
@@ -20,10 +21,19 @@ class QuizProvider extends ChangeNotifier {
   });
 
   Future<void> eitherFailureOrQuiz({QuizParams? params}) async {
-    final failureOrQuiz = await QuizRepositoryImpl(
+    final repo = QuizRepositoryImpl(
       remoteDataSource: QuizRemoteDataSourceImpl(dio: Dio()),
-    ).getQuiz(
-      params: params ?? const QuizParams(),
+    );
+
+    if (sessionToken == null) {
+      await repo.loadSessionToken();
+    }
+
+    final failureOrQuiz = await repo.getQuiz(
+      params: params ??
+          QuizParams(
+            sessionToken: sessionToken,
+          ),
     );
 
     failureOrQuiz.fold(

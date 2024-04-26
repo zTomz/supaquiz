@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/utils/constants/strings.dart';
 import '../../../../core/utils/errors/exeptions.dart';
+import '../../../../core/utils/resources/session_token.dart';
 import '../../../../core/utils/resources/supabase.dart';
 import '../models/quiz_model.dart';
 import '../params/quiz_params.dart';
@@ -15,6 +16,8 @@ abstract class QuizRemoteDataSource {
   Future<QuizModel> uploadQuizToDatabase({required QuizModel quiz});
 
   Future<void> updatePoints({required int offsetPoints});
+
+  Future<void> loadSessionToken();
 }
 
 class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
@@ -26,7 +29,6 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
 
   @override
   Future<QuizModel> getQuiz({required QuizParams params}) async {
-    // TODO: Implement token
     final response = await dio.get(
       kBaseUrl,
       queryParameters: {
@@ -112,6 +114,27 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
       // If an unexpected error occurs, print the type of the error
       log("Error with updatePoints: $e, Error type: ${e.runtimeType}");
       throw const ServerException();
+    }
+  }
+
+  @override
+  Future<void> loadSessionToken() async {
+    try {
+      final response = await dio.get(
+        kTokenRequestUrl,
+      );
+
+      if (response.statusCode == 200) {
+        sessionToken = response.data['token'] as String;
+      } else {
+        throw const ServerException(message: 'Failed to get session token');
+      }
+    } catch (e) {
+      // If an unexpected error occurs, print the type of the error
+      log(
+        "Error with getSessionToken: $e, Error type: ${e.runtimeType}",
+      );
+      throw const ServerException(message: 'Failed to get session token');
     }
   }
 }
