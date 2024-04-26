@@ -76,6 +76,15 @@ class QuestionModel {
       return;
     }
 
+    // If it is a true / false question, do not shuffle
+    if (incorrectAnswers.length + 1 <= 2) {
+      answers = [
+        "(A) True",
+        "(B) False",
+      ];
+      return;
+    }
+
     final List<String> letters = [
       'A',
       'B',
