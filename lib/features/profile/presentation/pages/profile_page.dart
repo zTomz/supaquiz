@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../../../core/config/router/app_router.dart';
 import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/constants/strings.dart';
 import '../../../../core/utils/extensions/snack_bar_extension.dart';
 import '../../../../core/utils/resources/supabase.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
@@ -42,6 +43,15 @@ class ProfilePage extends HookWidget {
                 builder: (context) => AboutDialog(
                   applicationName: "SupaQuiz",
                   applicationVersion: 'v0.0.1',
+                  applicationIcon: ClipRRect(
+                    borderRadius: BorderRadius.circular(kDefaultBorderRadius),
+                    child: SizedBox.square(
+                      dimension: 60,
+                      child: Image.asset(
+                        kAppIconUrl,
+                      ),
+                    ),
+                  ),
                   children: [
                     Text(
                       "Credits:",
