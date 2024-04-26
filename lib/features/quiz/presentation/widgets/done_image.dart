@@ -9,7 +9,6 @@ class DoneImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Atribute image author: https://www.freepik.com/free-vector/man-sysadmine-computer-programmer-working-computer_21852411.htm#fromView=search&page=1&position=22&uuid=de553a8d-4eea-487a-a02c-6037c353fa37
     return Center(
       child: SizedBox(
         width: min(MediaQuery.sizeOf(context).width * 0.8, 500),

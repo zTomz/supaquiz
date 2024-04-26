@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../core/config/router/app_router.dart';
 import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/extensions/snack_bar_extension.dart';
 import '../../../../core/utils/resources/supabase.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../data/data_sources/profile_remote_data_source.dart';
@@ -32,6 +34,49 @@ class ProfilePage extends HookWidget {
       appBar: AppBar(
         title: const Text("Profile Page"),
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (context) => AboutDialog(
+                  applicationName: "SupaQuiz",
+                  applicationVersion: 'v0.0.1',
+                  children: [
+                    Text(
+                      "Credits:",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    const SizedBox(height: kDefaultPadding),
+                    ListTile(
+                      title: const Text("Image from studio4rt on Freepik"),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(kDefaultBorderRadius),
+                      ),
+                      onTap: () {
+                        Clipboard.setData(
+                          const ClipboardData(
+                            text:
+                                "https://www.freepik.com/free-vector/man-sysadmine-computer-programmer-working-computer_21852411.htm#fromView=search&page=1&position=22&uuid=de553a8d-4eea-487a-a02c-6037c353fa37",
+                          ),
+                        );
+
+                        context.showSnackBar(
+                          message: "Copied link to clipboard",
+                          foreground: Colors.black,
+                          background: AppColors.primary,
+                        );
+                      },
+                    )
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(Icons.info_outline_rounded),
+          ),
+          const SizedBox(width: kDefaultPadding),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),

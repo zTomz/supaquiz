@@ -49,7 +49,7 @@ class QuizEndPage extends StatelessWidget {
                 ),
                 ResultBox(
                   value:
-                      "${quizProvider.quizInfo.time?.elapsed.inMinutes.toString().padLeft(2, '0')}:${quizProvider.quizInfo.time?.elapsed.inSeconds.toString().padLeft(2, '0')}",
+                      "${quizProvider.quizInfo.time?.elapsed.inMinutes.toString().padLeft(2, '0')}:${quizProvider.quizInfo.time?.elapsed.inSeconds.remainder(60).toString().padLeft(2, '0')}",
                   title: "Time",
                   color: AppColors.green,
                 ),
