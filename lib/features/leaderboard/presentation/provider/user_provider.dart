@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/config/utils/errors/failure.dart';
+import '../../../../core/utils/errors/failure.dart';
 import '../../data/data_sources/user_remote_data_source.dart';
 import '../../data/models/user_model.dart';
 import '../../data/repositories/user_repository.dart';

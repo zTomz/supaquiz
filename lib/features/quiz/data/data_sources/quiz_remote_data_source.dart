@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../../core/config/utils/constants/strings.dart';
-import '../../../../core/config/utils/errors/exeptions.dart';
-import '../../../../core/config/utils/resources/supabase.dart';
+import '../../../../core/utils/constants/strings.dart';
+import '../../../../core/utils/errors/exeptions.dart';
+import '../../../../core/utils/resources/supabase.dart';
 import '../models/quiz_model.dart';
 import '../params/quiz_params.dart';
 
@@ -70,10 +71,13 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
       }
     } on PostgrestException catch (e) {
       throw ServerException(message: e.message);
+    } on TypeError catch (e) {
+      throw ServerException(message: e.toString());
     } catch (e) {
       // If an unexpected error occurs, print the type of the error
-      debugPrint(
-          "Error with uploadQuizToDatabase: $e, Error type: ${e.runtimeType}");
+      log(
+        "Error with uploadQuizToDatabase: $e, Error type: ${e.runtimeType}",
+      );
       throw const ServerException();
     }
 
@@ -106,7 +110,7 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
       throw ServerException(message: e.message);
     } catch (e) {
       // If an unexpected error occurs, print the type of the error
-      debugPrint("Error with updatePoints: $e, Error type: ${e.runtimeType}");
+      log("Error with updatePoints: $e, Error type: ${e.runtimeType}");
       throw const ServerException();
     }
   }

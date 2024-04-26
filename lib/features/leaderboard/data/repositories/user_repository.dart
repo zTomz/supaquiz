@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/config/utils/errors/exeptions.dart';
-import '../../../../core/config/utils/errors/failure.dart';
+import '../../../../core/utils/errors/exeptions.dart';
+import '../../../../core/utils/errors/failure.dart';
 import '../data_sources/user_remote_data_source.dart';
 import '../models/user_model.dart';
 

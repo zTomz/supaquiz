@@ -13,11 +13,6 @@ abstract class AppTheme {
         fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
-      bodyLarge: TextStyle(
-        fontSize: 22,
-        height: 1.1,
-        fontWeight: FontWeight.bold,
-      ),
     ),
     colorScheme: lightColorScheme,
   );

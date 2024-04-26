@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/config/utils/errors/exeptions.dart';
-import '../../../../core/config/utils/errors/failure.dart';
+import '../../../../core/utils/errors/exeptions.dart';
+import '../../../../core/utils/errors/failure.dart';
 import '../data_sources/quiz_remote_data_source.dart';
 import '../models/quiz_model.dart';
 import '../params/quiz_params.dart';

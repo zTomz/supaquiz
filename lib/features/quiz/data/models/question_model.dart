@@ -1,4 +1,4 @@
-import '../../../../core/config/utils/functions/decode_string.dart';
+import '../../../../core/utils/functions/decode_string.dart';
 import '../enums/quiz_categories.dart';
 import '../enums/quiz_difficulty.dart';
 import '../enums/quiz_type.dart';

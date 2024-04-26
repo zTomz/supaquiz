@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
-import '../../../features/auth/presentation/auth_page.dart';
+import '../../../features/auth/presentation/pages/auth_page.dart';
 import '../../../features/leaderboard/presentation/pages/leaderboard_page.dart';
 import '../../../features/profile/presentation/pages/profile_page.dart';
 import '../../../features/quiz/presentation/pages/quiz_end_page.dart';

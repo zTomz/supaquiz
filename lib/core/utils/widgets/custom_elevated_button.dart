@@ -7,11 +7,11 @@ import '../constants/numbers.dart';
 class CustomElevatedButton extends StatelessWidget {
   final Widget child;
   final Color color;
-  final void Function() onTap;
+  final void Function() onPressed;
 
   const CustomElevatedButton({
     super.key,
-    required this.onTap,
+    required this.onPressed,
     required this.child,
     this.color = AppColors.primary,
   });
@@ -34,7 +34,7 @@ class CustomElevatedButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onTap,
+          onTap: onPressed,
           child: Padding(
             padding: const EdgeInsets.all(kDefaultPadding),
             child: child,

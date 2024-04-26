@@ -33,7 +33,6 @@ dependencies:
 
   # Supabase
   supabase_flutter: ^2.5.0
-  supabase_auth_ui: ^0.4.1
 
   # Environment variables
   envied: ^0.5.4+1

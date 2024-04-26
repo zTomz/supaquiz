@@ -43,7 +43,7 @@ class UserModel {
       name: map['username'] as String,
       createdAt: DateTime.parse(map['created_at'] as String),
       quizzes: List<QuizModel>.from(
-        (map['quizzes'] as List).map<QuizModel>(
+        ((map['quizzes'] as List?) ?? []).map<QuizModel>(
           (x) => QuizModel.fromMap(jsonDecode(x as String)),
         ),
       ),
@@ -60,7 +60,7 @@ class UserModel {
       name: source['username'] as String,
       createdAt: DateTime.parse(source['created_at'] as String),
       quizzes: List<QuizModel>.from(
-        (source['quizzes'] as List).map<QuizModel>(
+        ((source['quizzes'] as List?) ?? []).map<QuizModel>(
           (x) => QuizModel.fromJson(jsonDecode(x as String)),
         ),
       ),

@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/config/router/app_router.dart';
-import '../../../../core/config/utils/constants/numbers.dart';
-import '../../../../core/config/utils/widgets/custom_elevated_button.dart';
+import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../provider/quiz_provider.dart';
 import '../widgets/answer_container.dart';
 import '../widgets/info_box.dart';
@@ -97,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               const Spacer(),
               CustomElevatedButton(
-                onTap: () async {
+                onPressed: () async {
                   if (selectedAnswer.value.isEmpty) {
                     return;
                   }
@@ -141,7 +141,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               const SizedBox(height: kDefaultPadding),
               CustomElevatedButton(
-                onTap: () async {
+                onPressed: () async {
                   final currentInfo = quizProvider.quizInfo;
 
                   context.read<QuizProvider>().updateQuizInfo(

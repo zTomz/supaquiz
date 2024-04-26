@@ -1,5 +1,5 @@
 
-import '../../../../core/config/utils/errors/exeptions.dart';
+import '../../../../core/utils/errors/exeptions.dart';
 
 enum QuizCategory {
   generalKnowledge('General Knowledge', '9'),

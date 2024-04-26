@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/config/utils/errors/failure.dart';
+import '../../../../core/utils/errors/failure.dart';
 import '../../data/data_sources/quiz_remote_data_source.dart';
 import '../../data/models/question_model.dart';
 import '../../data/models/quiz_info_model.dart';

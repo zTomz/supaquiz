@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_auth_ui/supabase_auth_ui.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/config/router/app_router.dart';
 import 'core/config/supabase/setup.dart';
 import 'core/config/themes/app_theme.dart';
-import 'core/config/utils/resources/supabase.dart';
+import 'core/utils/resources/supabase.dart';
 import 'features/leaderboard/presentation/provider/user_provider.dart';
 import 'features/quiz/presentation/provider/quiz_provider.dart';
 

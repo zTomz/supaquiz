@@ -4,14 +4,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/config/router/app_router.dart';
-import '../../../core/config/utils/constants/colors.dart';
-import '../../../core/config/utils/constants/numbers.dart';
+import '../../../core/utils/constants/colors.dart';
+import '../../../core/utils/constants/numbers.dart';
 import '../../quiz/data/enums/quiz_categories.dart';
 import '../../quiz/data/enums/quiz_difficulty.dart';
 import '../../quiz/data/enums/quiz_type.dart';
 import '../../quiz/data/params/quiz_params.dart';
 import '../../quiz/presentation/provider/quiz_provider.dart';
-import '../../../core/config/utils/widgets/custom_elevated_button.dart';
+import '../../../core/utils/widgets/custom_elevated_button.dart';
 
 class CreateNewQuizDialog extends HookWidget {
   const CreateNewQuizDialog({super.key});
@@ -145,10 +145,10 @@ class CreateNewQuizDialog extends HookWidget {
       ),
       actions: [
         CustomElevatedButton(
-          color: AppColors.red,
-          onTap: () async {
+          onPressed: () async {
             await context.router.maybePop();
           },
+          color: AppColors.red,
           child: const Text(
             "Close",
             style: TextStyle(
@@ -158,7 +158,7 @@ class CreateNewQuizDialog extends HookWidget {
           ),
         ),
         CustomElevatedButton(
-          onTap: () async {
+          onPressed: () async {
             await context.read<QuizProvider>().eitherFailureOrQuiz(
                   params: QuizParams(
                     number: number.value,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/config/utils/constants/numbers.dart';
+import '../../../../core/utils/constants/numbers.dart';
 
 class ResultBox extends StatelessWidget {
   final String value;

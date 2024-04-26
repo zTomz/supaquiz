@@ -1,5 +1,5 @@
 
-import '../../../../core/config/utils/errors/exeptions.dart';
+import '../../../../core/utils/errors/exeptions.dart';
 
 enum QuizType {
   trueFalse('True / False', 'boolean'),

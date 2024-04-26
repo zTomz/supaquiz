@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../core/config/router/app_router.dart';
-import '../../../../core/config/utils/constants/colors.dart';
-import '../../../../core/config/utils/constants/numbers.dart';
-import '../../../../core/config/utils/resources/supabase.dart';
-import '../../../../core/config/utils/widgets/custom_elevated_button.dart';
+import '../../../../core/utils/constants/colors.dart';
+import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/resources/supabase.dart';
+import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../data/data_sources/profile_remote_data_source.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../widgets/user_bubble.dart';
@@ -56,7 +56,7 @@ class ProfilePage extends HookWidget {
               ),
             ),
             CustomElevatedButton(
-              onTap: () async {
+              onPressed: () async {
                 await ProfileRepositoryImpl(
                   remoteDataSource: ProfileRemoteDataSourceImpl(),
                 ).updateProfile(
@@ -74,7 +74,7 @@ class ProfilePage extends HookWidget {
             ),
             const SizedBox(height: kHugePadding),
             CustomElevatedButton(
-              onTap: () async {
+              onPressed: () async {
                 await supabase.auth.signOut();
               },
               color: AppColors.red,
@@ -93,7 +93,7 @@ class ProfilePage extends HookWidget {
             ),
             const SizedBox(height: kDefaultPadding),
             CustomElevatedButton(
-              onTap: () async {
+              onPressed: () async {
                 await ProfileRepositoryImpl(
                   remoteDataSource: ProfileRemoteDataSourceImpl(),
                 ).deleteUserData();
