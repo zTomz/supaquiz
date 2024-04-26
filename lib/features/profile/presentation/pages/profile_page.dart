@@ -91,29 +91,6 @@ class ProfilePage extends HookWidget {
                 ],
               ),
             ),
-            const SizedBox(height: kDefaultPadding),
-            CustomElevatedButton(
-              onPressed: () async {
-                await ProfileRepositoryImpl(
-                  remoteDataSource: ProfileRemoteDataSourceImpl(),
-                ).deleteUserData();
-
-                widgetState.value = widgetState.value + 1;
-              },
-              color: AppColors.red,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Delete Data",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),

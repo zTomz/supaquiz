@@ -6,8 +6,6 @@ import '../data_sources/profile_remote_data_source.dart';
 
 abstract class ProfileRepository {
   Future<Either<Failure, void>> updateProfile({required String username});
-
-  Future<Either<Failure, void>> deleteUserData();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -34,27 +32,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
       return Left(
         ServerFailure(
           errorMessage: 'Failed to update profile.',
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> deleteUserData() async {
-    try {
-      await remoteDataSource.deleteUserData();
-
-      return const Right(null);
-    } on ServerException catch (e) {
-      return Left(
-        ServerFailure(
-          errorMessage: e.message ?? 'Failed to delete user.',
-        ),
-      );
-    } catch (e) {
-      return Left(
-        ServerFailure(
-          errorMessage: 'Failed to delete user.',
         ),
       );
     }

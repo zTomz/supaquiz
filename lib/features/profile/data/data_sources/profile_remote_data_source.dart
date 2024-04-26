@@ -7,8 +7,6 @@ import '../../../../core/utils/resources/supabase.dart';
 
 abstract class ProfileRemoteDataSource {
   Future<void> updateProfile({required String username});
-
-  Future<void> deleteUserData();
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -33,25 +31,6 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       // If an unexpected error occurs, print the type of the error
       log(
         "Error with updating profile: $e, Error type: ${e.runtimeType}",
-      );
-      throw const ServerException();
-    }
-  }
-
-  @override
-  Future<void> deleteUserData() async {
-    try {
-      // Delete the user from Supabase Database
-      await supabase.from('users').delete().eq(
-            'user_id',
-            supabase.auth.currentUser!.id,
-          );
-    } on PostgrestException catch (e) {
-      throw ServerException(message: e.message);
-    } catch (e) {
-      // If an unexpected error occurs, print the type of the error
-      log(
-        "Error with deleting profile: $e, Error type: ${e.runtimeType}",
       );
       throw const ServerException();
     }
