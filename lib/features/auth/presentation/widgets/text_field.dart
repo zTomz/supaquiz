@@ -21,6 +21,7 @@ class AuthTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
+      obscureText: keyboardType == TextInputType.visiblePassword,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return isEmptyError;
