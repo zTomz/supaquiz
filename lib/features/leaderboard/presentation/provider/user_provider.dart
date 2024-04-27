@@ -28,10 +28,17 @@ class UserProvider extends ChangeNotifier {
       },
       (users) {
         this.users = users;
+        _sortUsers();
         failure = null;
 
         notifyListeners();
       },
+    );
+  }
+
+  void _sortUsers() {
+    users?.sort(
+      (a, b) => b.points.compareTo(a.points),
     );
   }
 }

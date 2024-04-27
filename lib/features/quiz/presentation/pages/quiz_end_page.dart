@@ -29,6 +29,7 @@ class QuizEndPage extends StatelessWidget {
               padding: const EdgeInsets.all(kDefaultPadding),
               child: Text(
                 "You finished ${quizProvider.quizInfo.name == 'Random' ? 'a random' : 'the ${quizProvider.quizInfo.name}'} quiz!",
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),

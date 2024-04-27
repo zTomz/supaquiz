@@ -17,7 +17,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: HomeRoute.page,
           path: '/',
-          initial: true,
           children: [
             AutoRoute(
               path: 'auth',
@@ -26,7 +25,7 @@ class AppRouter extends _$AppRouter {
             ),
             AutoRoute(
               page: SkeletonRoute.page,
-              initial: false,
+              initial: true,
               keepHistory: false,
               children: [
                 AutoRoute(
