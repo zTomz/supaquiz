@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'core/config/router/app_router.dart';
 import 'core/config/supabase/setup.dart';
@@ -12,6 +13,7 @@ import 'features/quiz/presentation/provider/quiz_provider.dart';
 
 Future<void> main() async {
   await setupSupabase();
+  setPathUrlStrategy();
 
   runApp(const MyApp());
 }

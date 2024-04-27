@@ -917,6 +917,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  url_strategy:
+    dependency: "direct main"
+    description:
+      path: url_strategy
+      ref: HEAD
+      resolved-ref: fed057d022b7463d97ac1a66b9239189df0488e7
+      url: "https://github.com/simpleclub/url_strategy.git"
+    source: git
+    version: "0.2.0"
   vector_math:
     dependency: transitive
     description:
