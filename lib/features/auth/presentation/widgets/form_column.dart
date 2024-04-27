@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/constants/numbers.dart';
@@ -16,13 +18,15 @@ class FormColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: children,
+      child: Center(
+        child: Container(
+          width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children,
+            ),
           ),
         ),
       ),

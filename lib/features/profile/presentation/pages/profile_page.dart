@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -47,78 +49,83 @@ class ProfilePage extends HookWidget {
           const SizedBox(width: kDefaultPadding),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            UserBubble(
-              username: usernameController.text.isEmpty
-                  ? "U"
-                  : usernameController.text.substring(0, 1),
-            ),
-            const SizedBox(height: kHugePadding),
-            Padding(
-              padding: const EdgeInsets.all(kDefaultPadding),
-              child: TextField(
-                controller: usernameController,
-                onChanged: (_) => widgetState.value = widgetState.value + 1,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Username",
+      body: Center(
+        child: Container(
+          width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              UserBubble(
+                username: usernameController.text.isEmpty
+                    ? "U"
+                    : usernameController.text.substring(0, 1),
+              ),
+              const SizedBox(height: kHugePadding),
+              Padding(
+                padding: const EdgeInsets.all(kDefaultPadding),
+                child: TextField(
+                  controller: usernameController,
+                  onChanged: (_) => widgetState.value = widgetState.value + 1,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Username",
+                  ),
                 ),
               ),
-            ),
-            CustomElevatedButton(
-              onPressed: () async {
-                final result = await ProfileRepositoryImpl(
-                  remoteDataSource: ProfileRemoteDataSourceImpl(),
-                ).updateProfile(
-                  username: usernameController.text,
-                );
+              CustomElevatedButton(
+                onPressed: () async {
+                  final result = await ProfileRepositoryImpl(
+                    remoteDataSource: ProfileRemoteDataSourceImpl(),
+                  ).updateProfile(
+                    username: usernameController.text,
+                  );
 
-                result.fold(
-                  (failure) => {
-                    context.showSnackBar(
-                      message: failure.errorMessage,
-                    ),
-                  },
-                  (_) {
-                    context.showSnackBar(
-                      message: "Profile updated!",
-                    );
-                  },
-                );
+                  result.fold(
+                    (failure) => {
+                      context.showSnackBar(
+                        message: failure.errorMessage,
+                      ),
+                    },
+                    (_) {
+                      context.showSnackBar(
+                        message: "Profile updated!",
+                        background: AppColors.primary,
+                        foreground: Colors.black,
+                      );
+                    },
+                  );
 
-                widgetState.value = widgetState.value + 1;
-              },
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Update Profile", style: TextStyle(fontSize: 18)),
-                ],
+                  widgetState.value = widgetState.value + 1;
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Update Profile", style: TextStyle(fontSize: 18)),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: kHugePadding),
-            CustomElevatedButton(
-              onPressed: () async {
-                await supabase.auth.signOut();
-              },
-              color: AppColors.red,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Sign Out",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
+              const SizedBox(height: kHugePadding),
+              CustomElevatedButton(
+                onPressed: () async {
+                  await supabase.auth.signOut();
+                },
+                color: AppColors.red,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Sign Out",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

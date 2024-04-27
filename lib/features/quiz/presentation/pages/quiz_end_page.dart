@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,84 +21,87 @@ class QuizEndPage extends StatelessWidget {
     final quizProvider = context.watch<QuizProvider>();
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kLargePadding),
-        child: Column(
-          children: [
-            const Spacer(),
-            const DoneImage(),
-            Padding(
-              padding: const EdgeInsets.all(kDefaultPadding),
-              child: Text(
-                "You finished ${quizProvider.quizInfo.name == 'Random' ? 'a random' : 'the ${quizProvider.quizInfo.name}'} quiz!",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge,
+      body: Center(
+        child: Container(
+          width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+          padding: const EdgeInsets.symmetric(horizontal: kLargePadding),
+          child: Column(
+            children: [
+              const Spacer(),
+              const DoneImage(),
+              Padding(
+                padding: const EdgeInsets.all(kDefaultPadding),
+                child: Text(
+                  "You finished ${quizProvider.quizInfo.name == 'Random' ? 'a random' : 'the ${quizProvider.quizInfo.name}'} quiz!",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ),
-            ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: kHugePadding,
-              runSpacing: kDefaultPadding,
-              children: [
-                ResultBox(
-                  value: "${quizProvider.quizInfo.correct}",
-                  title: "Correct",
-                  color: AppColors.blue,
-                ),
-                ResultBox(
-                  value: "${quizProvider.quizInfo.incorrect}",
-                  title: "Incorrect",
-                  color: AppColors.red,
-                ),
-                ResultBox(
-                  value:
-                      "${quizProvider.quizInfo.time?.elapsed.inMinutes.toString().padLeft(2, '0')}:${quizProvider.quizInfo.time?.elapsed.inSeconds.remainder(60).toString().padLeft(2, '0')}",
-                  title: "Time",
-                  color: AppColors.green,
-                ),
-                ResultBox(
-                  value: "${quizProvider.quizInfo.skipped}",
-                  title: "Skipped",
-                  color: AppColors.red,
-                ),
-                ResultBox(
-                  value: "${quizProvider.quizInfo.totalPoints}",
-                  title: "Total Points",
-                  color: AppColors.primary,
-                ),
-              ],
-            ),
-            const Spacer(),
-            CustomElevatedButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: kHugePadding,
+                runSpacing: kDefaultPadding,
                 children: [
-                  Text(
-                    "Done",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                  ResultBox(
+                    value: "${quizProvider.quizInfo.correct}",
+                    title: "Correct",
+                    color: AppColors.blue,
+                  ),
+                  ResultBox(
+                    value: "${quizProvider.quizInfo.incorrect}",
+                    title: "Incorrect",
+                    color: AppColors.red,
+                  ),
+                  ResultBox(
+                    value:
+                        "${quizProvider.quizInfo.time?.elapsed.inMinutes.toString().padLeft(2, '0')}:${quizProvider.quizInfo.time?.elapsed.inSeconds.remainder(60).toString().padLeft(2, '0')}",
+                    title: "Time",
+                    color: AppColors.green,
+                  ),
+                  ResultBox(
+                    value: "${quizProvider.quizInfo.skipped}",
+                    title: "Skipped",
+                    color: AppColors.red,
+                  ),
+                  ResultBox(
+                    value: "${quizProvider.quizInfo.totalPoints}",
+                    title: "Total Points",
+                    color: AppColors.primary,
                   ),
                 ],
               ),
-              onPressed: () async {
-                await context.read<QuizProvider>().uploadQuizToDatabase(
-                      quiz: quizProvider.quiz!,
-                    );
-
-                if (context.mounted) {
-                  await context.read<QuizProvider>().updatePoints(
-                        offsetPoints: quizProvider.quizInfo.totalPoints,
+              const Spacer(),
+              CustomElevatedButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Done",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+                onPressed: () async {
+                  await context.read<QuizProvider>().uploadQuizToDatabase(
+                        quiz: quizProvider.quiz!,
                       );
-                }
 
-                if (context.mounted) {
-                  context.router.push(
-                    const SkeletonRoute(),
-                  );
-                }
-              },
-            ),
-            const SizedBox(height: kLargeSpacing),
-          ],
+                  if (context.mounted) {
+                    await context.read<QuizProvider>().updatePoints(
+                          offsetPoints: quizProvider.quizInfo.totalPoints,
+                        );
+                  }
+
+                  if (context.mounted) {
+                    context.router.push(
+                      const SkeletonRoute(),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: kLargeSpacing),
+            ],
+          ),
         ),
       ),
     );

@@ -8,3 +8,5 @@ const double kLargePadding = 16;
 const double kHugePadding = 28;
 
 const double kLargeSpacing = 32;
+
+const double kMaxScreenWidth = 600.0;

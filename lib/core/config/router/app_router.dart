@@ -26,12 +26,12 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               page: SkeletonRoute.page,
               initial: true,
-              keepHistory: false,
               children: [
                 AutoRoute(
                   path: 'leaderboard',
                   page: LeaderboardRoute.page,
                   type: const RouteType.custom(),
+                  initial: true,
                 ),
                 AutoRoute(
                   path: 'profile',

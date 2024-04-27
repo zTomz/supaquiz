@@ -43,7 +43,7 @@ dependencies:
   # Hooks
   flutter_hooks: ^0.20.5
   
-  auto_route: ^8.1.0
+  auto_route: ^8.1.3
   fpdart: ^1.1.0
   dio: ^5.4.3+1
 

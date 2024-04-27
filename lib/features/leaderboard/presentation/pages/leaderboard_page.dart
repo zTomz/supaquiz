@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/utils/constants/numbers.dart';
 import '../provider/user_provider.dart';
 import '../widgets/leaderboard_list_tile.dart';
 import '../../../../core/utils/widgets/loading_indicator.dart';
@@ -33,17 +36,23 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       ),
       body: userProvider.users == null
           ? LoadingIndicator(message: userProvider.failure?.errorMessage)
-          : RefreshIndicator(
-              onRefresh: () async {
-                await context.read<UserProvider>().eitherFailureOrUsers();
-              },
-              child: ListView.builder(
-                itemCount: userProvider.users?.length,
-                itemBuilder: (context, index) {
-                  return LeaderboardListTile(user: userProvider.users![index]);
-                },
+          : Center(
+            child: SizedBox(
+                width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    await context.read<UserProvider>().eitherFailureOrUsers();
+                  },
+                  child: ListView.builder(
+                    itemCount: userProvider.users?.length,
+                    itemBuilder: (context, index) {
+                      return LeaderboardListTile(
+                          user: userProvider.users![index]);
+                    },
+                  ),
+                ),
               ),
-            ),
+          ),
     );
   }
 }

@@ -20,15 +20,43 @@ class Skeleton extends StatelessWidget {
       ],
       builder: (context, child) {
         final autoTabsRouter = AutoTabsRouter.of(context);
+        final useNavigationBar = MediaQuery.sizeOf(context).width < 500;
 
         return Scaffold(
-          body: child,
+          body: useNavigationBar
+              ? child
+              : Row(
+                  children: [
+                    NavigationRail(
+                      labelType: NavigationRailLabelType.all,
+                      groupAlignment: 0,
+                      destinations: const [
+                        NavigationRailDestination(
+                          icon: Icon(Icons.leaderboard_rounded),
+                          label: Text("Leaderboard"),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.person_rounded),
+                          label: Text("Profile"),
+                        ),
+                      ],
+                      selectedIndex: autoTabsRouter.activeIndex,
+                      onDestinationSelected: (value) {
+                        autoTabsRouter.setActiveIndex(value);
+                      },
+                    ),
+                    const VerticalDivider(thickness: 1, width: 1),
+                    Expanded(child: child),
+                  ],
+                ),
           floatingActionButton: autoTabsRouter.activeIndex == 0
               ? const CustomFloatingActionButton()
               : null,
-          bottomNavigationBar: CustomNavigationBar(
-            autoTabsRouter: autoTabsRouter,
-          ),
+          bottomNavigationBar: useNavigationBar
+              ? CustomNavigationBar(
+                  autoTabsRouter: autoTabsRouter,
+                )
+              : null,
         );
       },
     );
