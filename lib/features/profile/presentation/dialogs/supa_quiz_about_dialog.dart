@@ -12,8 +12,8 @@ class SupaQuizAboutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AboutDialog(
-      applicationName: "SupaQuiz",
-      applicationVersion: 'v0.0.1',
+      applicationName: kAppName,
+      applicationVersion: kAppVersion,
       applicationIcon: ClipRRect(
         borderRadius: BorderRadius.circular(kDefaultBorderRadius),
         child: SizedBox.square(
