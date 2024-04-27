@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
     if (supabase.auth.currentUser == null) {
       appRouter.push(const AuthRoute());
     } else {
-      appRouter.push(const SkeletonRoute());
+      appRouter.replace(const SkeletonRoute());
     }
 
     supabase.auth.onAuthStateChange.listen((data) {
