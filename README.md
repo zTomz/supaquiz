@@ -1,8 +1,11 @@
 # Quiz App 📝
 
-A fun and interactive quiz app built with Flutter. Test your knowledge on various topics!
+A fun and interactive quiz app built with Flutter. Test your knowledge on various topics! This project was originally developed for the [Supabase Open Source Hackathon 2024](https://supabase.com/blog/supabase-oss-hackathon), but I couldn't finish it in time.
 
-![App Demo](path_to_your_screenshot_image.png)
+## Platform Support
+Download for Android from the
+[releases page.](https://github.com/zTomz/supaquiz/releases)
+Windows and web releases not available at this time.
 
 ## Features
 
