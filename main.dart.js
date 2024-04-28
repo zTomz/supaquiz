@@ -30958,35 +30958,35 @@ this.a=b},
 a9S:function a9S(a){this.a=a},
 aFe(){var s=0,r=A.C(t.H),q,p,o,n,m,l,k
 var $async$aFe=A.D(function(a,b){if(a===1)return A.z(b,r)
-while(true)switch(s){case 0:s=2
-return A.y(A.aFu(),$async$aFe)
-case 2:q=self.document.baseURI
-if(q==null)q=null
-if(q==null)A.V(A.cK("Please add a <base> element to your index.html"))
-if(!J.aVn(q,"/"))A.V(A.cK('The base href has to end with a "/" to work correctly'))
-q=A.de(q,0,null)
-q=A.b7k(A.aJ9(q.gd5(q)))
+while(true)switch(s){case 0:k=self.document.baseURI
+if(k==null)k=null
+if(k==null)A.V(A.cK("Please add a <base> element to your index.html"))
+if(!J.aVn(k,"/"))A.V(A.cK('The base href has to end with a "/" to work correctly'))
+k=A.de(k,0,null)
+k=A.b7k(A.aJ9(k.gd5(k)))
 $.aDy=!1
 $.a60=!0
-$.a5J=new A.aj8(q,B.mU)
-if($.ak==null)A.aPj()
-q=$.ak
+$.a5J=new A.aj8(k,B.mU)
+s=2
+return A.y(A.aFu(),$async$aFe)
+case 2:if($.ak==null)A.aPj()
+k=$.ak
+k.toString
+q=$.aS()
+p=t.R
+o=p.a(q.ge0().b.i(0,0))
+o.toString
+n=k.gDZ()
+m=k.ax$
+if(m===$){q=p.a(q.ge0().b.i(0,0))
 q.toString
-p=$.aS()
-o=t.R
-n=o.a(p.ge0().b.i(0,0))
-n.toString
-m=q.gDZ()
-l=q.ax$
-if(l===$){p=o.a(p.ge0().b.i(0,0))
-p.toString
-k=new A.a1r(B.n,p,null,A.an())
-k.aG()
-k.saS(null)
-q.ax$!==$&&A.a5()
-q.ax$=k
-l=k}q.a4d(new A.VQ(n,B.Nu,m,l,null))
-q.P6()
+l=new A.a1r(B.n,q,null,A.an())
+l.aG()
+l.saS(null)
+k.ax$!==$&&A.a5()
+k.ax$=l
+m=l}k.a4d(new A.VQ(o,B.Nu,n,m,null))
+k.P6()
 return A.A(null,r)}})
 return A.B($async$aFe,r)},
 Rp:function Rp(a){this.a=a},
