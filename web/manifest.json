@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A fun and interactive quiz app built with Flutter. Test your knowledge on various topics!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
