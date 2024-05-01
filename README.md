@@ -4,8 +4,7 @@ A fun and interactive quiz app built with Flutter. Test your knowledge on variou
 
 ## Platform Support
 Download for Android from the
-[releases page.](https://github.com/zTomz/supaquiz/releases)
-Windows and web releases not available at this time.
+[releases page](https://github.com/zTomz/supaquiz/releases). You can also run the app in your [browser](https://ztomz.github.io/supaquiz/). Windows release is not available at the time.
 
 ## Features
 
