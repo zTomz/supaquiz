@@ -9,15 +9,23 @@ import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
 import '../../../../core/utils/extensions/snack_bar_extension.dart';
 import '../../../../core/utils/resources/supabase.dart';
-import '../../../../core/utils/widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/text_field.dart';
 import '../../data/data_sources/profile_remote_data_source.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../dialogs/supa_quiz_about_dialog.dart';
 import '../widgets/user_bubble.dart';
 
 @RoutePage()
-class ProfilePage extends HookWidget {
+class ProfilePage extends StatefulHookWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +70,39 @@ class ProfilePage extends HookWidget {
                     : usernameController.text.substring(0, 1),
               ),
               const SizedBox(height: kHugePadding),
-              Padding(
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: TextField(
-                  controller: usernameController,
-                  onChanged: (_) => widgetState.value = widgetState.value + 1,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Username",
+              Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: SupaTextField(
+                    label: "Username",
+                    controller: usernameController,
+                    keyboardType: TextInputType.name,
+                    onChanged: (_) => widgetState.value = widgetState.value + 1,
+                    isEmptyError: "Please enter a username",
                   ),
                 ),
               ),
               CustomElevatedButton(
                 onPressed: () async {
+                  if (!_formKey.currentState!.validate()) {
+                    return;
+                  }
+
+                  if (usernameController.text.length < 3) {
+                    context.showSnackBar(
+                      message: "Username must be at least 3 characters",
+                    );
+                    return;
+                  }
+
+                  if (usernameController.text == user?.userMetadata?['username']) {
+                    context.showSnackBar(
+                      message: "The username is the same as before",
+                    );
+                    return;
+                  }
+
                   final result = await ProfileRepositoryImpl(
                     remoteDataSource: ProfileRemoteDataSourceImpl(),
                   ).updateProfile(

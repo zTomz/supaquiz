@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/utils/constants/numbers.dart';
 import '../provider/user_provider.dart';
 import '../widgets/leaderboard_list_tile.dart';
-import '../../../../core/utils/widgets/loading_indicator.dart';
+import '../../../../core/widgets/loading_indicator.dart';
 
 @RoutePage()
 class LeaderboardPage extends StatefulWidget {
@@ -37,22 +37,23 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       body: userProvider.users == null
           ? LoadingIndicator(message: userProvider.failure?.errorMessage)
           : Center(
-            child: SizedBox(
+              child: SizedBox(
                 width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
                 child: RefreshIndicator(
                   onRefresh: () async {
                     await context.read<UserProvider>().eitherFailureOrUsers();
                   },
                   child: ListView.builder(
-                    itemCount: userProvider.users?.length,
+                    itemCount: userProvider.users!.length,
                     itemBuilder: (context, index) {
                       return LeaderboardListTile(
-                          user: userProvider.users![index]);
+                        user: userProvider.users![index],
+                      );
                     },
                   ),
                 ),
               ),
-          ),
+            ),
     );
   }
 }

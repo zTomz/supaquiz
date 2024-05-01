@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/constants/numbers.dart';
+import '../utils/constants/numbers.dart';
 
-class AuthTextField extends StatelessWidget {
+class SupaTextField extends StatelessWidget {
   final String label;
   final TextInputType? keyboardType;
   final TextEditingController controller;
   final String isEmptyError;
+  final void Function(String)? onChanged;
 
-  const AuthTextField({
+  const SupaTextField({
     super.key,
     required this.label,
     required this.controller,
     required this.isEmptyError,
+    this.onChanged,
     this.keyboardType,
   });
 
@@ -22,6 +24,7 @@ class AuthTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       obscureText: keyboardType == TextInputType.visiblePassword,
+      onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return isEmptyError;

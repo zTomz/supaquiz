@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../core/utils/constants/numbers.dart';
-import '../../../../core/utils/widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../data/repositories/authentication_repository.dart';
 import '../widgets/form_column.dart';
-import '../widgets/text_field.dart';
+import '../../../../core/widgets/text_field.dart';
 
 @RoutePage()
 class AuthPage extends StatefulHookWidget {
@@ -46,14 +46,14 @@ class _AuthPageState extends State<AuthPage> {
               ),
             ),
           ),
-          AuthTextField(
+          SupaTextField(
             label: "Email",
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
             isEmptyError: "Please enter an email",
           ),
           const SizedBox(height: kDefaultPadding),
-          AuthTextField(
+          SupaTextField(
             label: "Password",
             controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
@@ -61,7 +61,7 @@ class _AuthPageState extends State<AuthPage> {
           ),
           if (!isSignIn.value) ...[
             const SizedBox(height: kDefaultPadding),
-            AuthTextField(
+            SupaTextField(
               label: "Username",
               controller: usernameController,
               keyboardType: TextInputType.name,

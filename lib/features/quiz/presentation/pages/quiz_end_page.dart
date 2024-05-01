@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/config/router/app_router.dart';
 import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
-import '../../../../core/utils/widgets/custom_elevated_button.dart';
+import '../../../../core/widgets/custom_elevated_button.dart';
 import '../provider/quiz_provider.dart';
 import '../widgets/done_image.dart';
 import '../widgets/result_box.dart';

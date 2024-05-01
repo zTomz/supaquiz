@@ -11,7 +11,7 @@ import '../../quiz/data/enums/quiz_difficulty.dart';
 import '../../quiz/data/enums/quiz_type.dart';
 import '../../quiz/data/params/quiz_params.dart';
 import '../../quiz/presentation/provider/quiz_provider.dart';
-import '../../../core/utils/widgets/custom_elevated_button.dart';
+import '../../../core/widgets/custom_elevated_button.dart';
 
 class CreateNewQuizDialog extends HookWidget {
   const CreateNewQuizDialog({super.key});
