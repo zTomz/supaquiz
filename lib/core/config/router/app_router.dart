@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
 import '../../../features/auth/presentation/pages/auth_page.dart';
+import '../../../features/leaderboard/data/models/user_model.dart';
 import '../../../features/leaderboard/presentation/pages/leaderboard_page.dart';
 import '../../../features/profile/presentation/pages/profile_page.dart';
+import '../../../features/leaderboard/presentation/pages/public_profile_page.dart';
 import '../../../features/quiz/presentation/pages/quiz_end_page.dart';
 import '../../../features/quiz/presentation/pages/quiz_page.dart';
 import '../../../features/skeleton/skeleton.dart';
@@ -47,6 +50,12 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               path: 'finished',
               page: QuizEndRoute.page,
+            ),
+            AutoRoute(
+              path: 'users/:username',
+              fullscreenDialog: true,
+              page: PublicProfileRoute.page,
+              type: const RouteType.custom(),
             ),
           ],
         ),

@@ -39,6 +39,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfilePage(),
       );
     },
+    PublicProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<PublicProfileRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PublicProfilePage(
+          key: args.key,
+          user: args.user,
+          username: args.username,
+        ),
+      );
+    },
     QuizEndRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -114,6 +125,50 @@ class ProfileRoute extends PageRouteInfo<void> {
   static const String name = 'ProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PublicProfilePage]
+class PublicProfileRoute extends PageRouteInfo<PublicProfileRouteArgs> {
+  PublicProfileRoute({
+    Key? key,
+    required UserModel user,
+    required String username,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PublicProfileRoute.name,
+          args: PublicProfileRouteArgs(
+            key: key,
+            user: user,
+            username: username,
+          ),
+          rawPathParams: {'username': username},
+          initialChildren: children,
+        );
+
+  static const String name = 'PublicProfileRoute';
+
+  static const PageInfo<PublicProfileRouteArgs> page =
+      PageInfo<PublicProfileRouteArgs>(name);
+}
+
+class PublicProfileRouteArgs {
+  const PublicProfileRouteArgs({
+    this.key,
+    required this.user,
+    required this.username,
+  });
+
+  final Key? key;
+
+  final UserModel user;
+
+  final String username;
+
+  @override
+  String toString() {
+    return 'PublicProfileRouteArgs{key: $key, user: $user, username: $username}';
+  }
 }
 
 /// generated route for

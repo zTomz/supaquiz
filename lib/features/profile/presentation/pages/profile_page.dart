@@ -14,7 +14,7 @@ import '../../../../core/widgets/text_field.dart';
 import '../../data/data_sources/profile_remote_data_source.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../dialogs/supa_quiz_about_dialog.dart';
-import '../widgets/user_bubble.dart';
+import '../../../../core/widgets/user_bubble.dart';
 
 @RoutePage()
 class ProfilePage extends StatefulHookWidget {
@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
               UserBubble(
                 username: usernameController.text.isEmpty
                     ? "U"
-                    : usernameController.text.substring(0, 1),
+                    : usernameController.text,
               ),
               const SizedBox(height: kHugePadding),
               Form(
@@ -96,7 +96,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     return;
                   }
 
-                  if (usernameController.text == user?.userMetadata?['username']) {
+                  if (usernameController.text ==
+                      user?.userMetadata?['username']) {
                     context.showSnackBar(
                       message: "The username is the same as before",
                     );

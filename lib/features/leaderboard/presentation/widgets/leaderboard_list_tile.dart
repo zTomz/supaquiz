@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/config/router/app_router.dart';
 import '../../../../core/utils/constants/numbers.dart';
 import '../../data/models/user_model.dart';
 
@@ -25,6 +27,16 @@ class LeaderboardListTile extends StatelessWidget {
           radius: 26,
           child: Text(user.name.substring(0, 1)),
         ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kDefaultBorderRadius),
+        ),
+        contentPadding: const EdgeInsets.all(kSmallPadding),
+        onTap: () {
+          context.pushRoute(PublicProfileRoute(
+            user: user,
+            username: user.name,
+          ));
+        },
       ),
     );
   }

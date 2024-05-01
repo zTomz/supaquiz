@@ -9,10 +9,6 @@ abstract class AppTheme {
         fontSize: 28,
         fontWeight: FontWeight.bold,
       ),
-      titleSmall: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
     ),
     colorScheme: lightColorScheme,
   );

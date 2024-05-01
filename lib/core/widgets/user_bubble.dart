@@ -10,14 +10,12 @@ class UserBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CircleAvatar(
-        radius: 60,
-        child: Text(
-          username,
-          style: const TextStyle(
-            fontSize: 60,
-          ),
+    return CircleAvatar(
+      radius: 60,
+      child: Text(
+        username.substring(0, 1),
+        style: const TextStyle(
+          fontSize: 60,
         ),
       ),
     );
