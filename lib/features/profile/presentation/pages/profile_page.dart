@@ -12,7 +12,7 @@ import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/text_field.dart';
 import '../../data/data_sources/profile_remote_data_source.dart';
 import '../../data/repositories/profile_repository.dart';
-import '../dialogs/supa_quiz_about_dialog.dart';
+import '../../../about/presentation/dialogs/supa_quiz_about_dialog.dart';
 import '../../../../core/widgets/user_bubble.dart';
 
 @RoutePage()

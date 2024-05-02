@@ -8,14 +8,18 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/config/router/app_router.dart';
 import 'core/config/supabase/setup.dart';
 import 'core/config/themes/app_theme.dart';
+import 'features/about/data/app_package_info.dart';
 import 'core/utils/resources/supabase.dart';
 import 'features/leaderboard/presentation/provider/user_provider.dart';
 import 'features/quiz/presentation/provider/quiz_provider.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   usePathUrlStrategy();
 
   await setupSupabase();
+  await AppPackageInfo().init();
 
   runApp(const MyApp());
 }
@@ -62,21 +66,41 @@ class _HomeState extends State<Home> {
 
     // If user is not signed in, send to auth page
     if (supabase.auth.currentUser == null) {
-      appRouter.push(const AuthRoute());
+      appRouter.replaceAll([
+        const AuthRoute(),
+      ]);
     } else {
-      appRouter.replace(const SkeletonRoute());
+      appRouter.replaceAll([
+        const SkeletonRoute(),
+      ]);
     }
 
     supabase.auth.onAuthStateChange.listen((data) {
+      if (data.event == AuthChangeEvent.initialSession) {
+        if (supabase.auth.currentUser == null) {
+          appRouter.replaceAll([
+            const AuthRoute(),
+          ]);
+        } else {
+          appRouter.replaceAll([
+            const SkeletonRoute(),
+          ]);
+        }
+      }
+
       // If user signed in, send to skeleton page
       if (data.event == AuthChangeEvent.signedIn) {
-        appRouter.push(const SkeletonRoute());
+        appRouter.replaceAll([
+          const SkeletonRoute(),
+        ]);
       }
 
       // If user signed out, send to auth page
       if (data.event == AuthChangeEvent.signedOut ||
           data.event == AuthChangeEvent.userDeleted) {
-        appRouter.push(const AuthRoute());
+        appRouter.replaceAll([
+          const AuthRoute(),
+        ]);
       }
     });
   }

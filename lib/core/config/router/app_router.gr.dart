@@ -62,6 +62,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const QuizPage(),
       );
     },
+    ReleaseRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ReleasePage(),
+      );
+    },
     SkeletonRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -195,6 +201,20 @@ class QuizRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'QuizRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ReleasePage]
+class ReleaseRoute extends PageRouteInfo<void> {
+  const ReleaseRoute({List<PageRouteInfo>? children})
+      : super(
+          ReleaseRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReleaseRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

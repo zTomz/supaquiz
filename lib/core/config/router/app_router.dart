@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../../features/about/presentation/pages/release_page.dart';
 import '../../../features/auth/presentation/pages/auth_page.dart';
 import '../../../features/leaderboard/data/models/user_model.dart';
 import '../../../features/leaderboard/presentation/pages/leaderboard_page.dart';
@@ -20,6 +21,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: HomeRoute.page,
           path: '/',
+          initial: true,
           children: [
             AutoRoute(
               path: 'auth',
@@ -27,14 +29,13 @@ class AppRouter extends _$AppRouter {
               keepHistory: false,
             ),
             AutoRoute(
+              path: '',
               page: SkeletonRoute.page,
-              initial: true,
               children: [
                 AutoRoute(
                   path: 'leaderboard',
                   page: LeaderboardRoute.page,
                   type: const RouteType.custom(),
-                  initial: true,
                 ),
                 AutoRoute(
                   path: 'profile',
@@ -56,6 +57,11 @@ class AppRouter extends _$AppRouter {
               fullscreenDialog: true,
               page: PublicProfileRoute.page,
               type: const RouteType.custom(),
+            ),
+            AutoRoute(
+              path: 'release',
+              fullscreenDialog: true,
+              page: ReleaseRoute.page,
             ),
           ],
         ),

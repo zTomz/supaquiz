@@ -2,14 +2,30 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/config/router/app_router.dart';
+import '../../core/utils/resources/supabase.dart';
+import '../about/data/app_package_info.dart';
 import 'widgets/custom_floating_action_button.dart';
 import 'widgets/custom_navigation_bar.dart';
 
 @RoutePage(
   name: "SkeletonRoute",
 )
-class Skeleton extends StatelessWidget {
+class Skeleton extends StatefulWidget {
   const Skeleton({super.key});
+
+  @override
+  State<Skeleton> createState() => _SkeletonState();
+}
+
+class _SkeletonState extends State<Skeleton> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (!AppPackageInfo().appIsUpToDate && supabase.auth.currentUser != null) {
+      appRouter.push(const ReleaseRoute());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

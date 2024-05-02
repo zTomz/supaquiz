@@ -5,7 +5,8 @@ import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
 import '../../../../core/utils/constants/strings.dart';
 import '../../../../core/utils/extensions/snack_bar_extension.dart';
-import '../widgets/dialog_list_tile.dart';
+import '../../../profile/presentation/widgets/dialog_list_tile.dart';
+import '../../data/app_package_info.dart';
 
 class SupaQuizAboutDialog extends StatelessWidget {
   const SupaQuizAboutDialog({super.key});
@@ -14,7 +15,7 @@ class SupaQuizAboutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AboutDialog(
       applicationName: kAppName,
-      applicationVersion: kAppVersion,
+      applicationVersion: AppPackageInfo().packageInfo.version,
       applicationIcon: ClipRRect(
         borderRadius: BorderRadius.circular(kDefaultBorderRadius),
         child: SizedBox.square(
