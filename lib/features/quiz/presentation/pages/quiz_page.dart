@@ -13,20 +13,8 @@ import '../widgets/answer_container.dart';
 import '../widgets/info_box.dart';
 
 @RoutePage()
-class QuizPage extends StatefulHookWidget {
+class QuizPage extends HookWidget {
   const QuizPage({super.key});
-
-  @override
-  State<QuizPage> createState() => _QuizPageState();
-}
-
-class _QuizPageState extends State<QuizPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    context.read<QuizProvider>().generateAnswers();
-  }
 
   @override
   Widget build(BuildContext context) {

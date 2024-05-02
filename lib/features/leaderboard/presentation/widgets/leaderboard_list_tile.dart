@@ -16,7 +16,7 @@ class LeaderboardListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: kDefaultPadding),
+      padding: const EdgeInsets.only(top: kSmallPadding),
       child: ListTile(
         title: Text(user.name),
         trailing: Text(

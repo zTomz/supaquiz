@@ -51,9 +51,24 @@ class QuizProvider extends ChangeNotifier {
         );
         failure = null;
 
+        _generateAnswers();
+
         notifyListeners();
       },
     );
+  }
+
+  void setQuiz(QuizModel quiz, {String name = 'Random'}) {
+    this.quiz = quiz;
+    quizInfo = QuizInfoModel.empty().copyWith(
+      time: Stopwatch()..start(),
+      name: name,
+    );
+    failure = null;
+
+    _generateAnswers();
+
+    notifyListeners();
   }
 
   /// Upload the quiz to the database, and reset the local quiz.
@@ -108,7 +123,7 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void generateAnswers() {
+  void _generateAnswers() {
     if (quiz == null) {
       return;
     }

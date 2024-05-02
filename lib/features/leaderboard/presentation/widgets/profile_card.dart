@@ -38,7 +38,7 @@ class ProfileCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Text(
-                "Created at: ${user.createdAt.year}-${user.createdAt.month}-${user.createdAt.day}",
+                "Joined at: ${user.createdAt.year}-${user.createdAt.month}-${user.createdAt.day}",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Text(

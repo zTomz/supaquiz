@@ -17,7 +17,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       List<UserModel> users = [];
 
       final response = await supabase.from('users').select();
-      log(response.toString());
       users = response.map((user) => UserModel.fromMap(user)).toList();
 
       return users;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/constants/numbers.dart';
 import '../../data/models/user_model.dart';
 import '../widgets/profile_card.dart';
+import '../widgets/public_quiz_list_view.dart';
 
 @RoutePage()
 class PublicProfilePage extends StatelessWidget {
@@ -36,20 +37,7 @@ class PublicProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: kLargePadding),
-            Text(
-              "Coming soon...",
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            // Expanded(
-            //   child: ListView.builder(
-            //     itemCount: user.quizzes.length,
-            //     itemBuilder: (context, index) {
-            //       final quiz = user.quizzes[index];
-
-            //       return Text(quiz.);
-            //     },
-            //   ),
-            // ),
+            PublicQuizListView(quizzes: user.quizzes),
           ],
         ),
       ),

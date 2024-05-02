@@ -64,6 +64,7 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDataSource {
           .from('users')
           .select()
           .eq('user_id', supabase.auth.currentUser!.id)
+          .limit(1)
           .single();
 
       if (row.isEmpty) {
