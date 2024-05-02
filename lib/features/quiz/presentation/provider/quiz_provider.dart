@@ -57,38 +57,26 @@ class QuizProvider extends ChangeNotifier {
   }
 
   /// Upload the quiz to the database, and reset the local quiz.
+  /// This also will update the points in the database, based on the total points of quiz info
   /// If an error occurs, it will be stored in the [failure] property.
-  Future<void> uploadQuizToDatabase({
-    required QuizModel quiz,
-  }) async {
+  Future<void> uploadQuizToDatabase() async {
+    if (quiz == null) {
+      failure = ServerFailure(
+        errorMessage: "No quiz to upload",
+      );
+      return;
+    }
+
     final failureOrQuiz = await QuizRepositoryImpl(
       remoteDataSource: QuizRemoteDataSourceImpl(
         dio: Dio(),
       ),
     ).uploadQuizToDatabase(
-      quiz: quiz,
+      quiz: quiz!,
+      quizInfo: quizInfo,
     );
 
     failureOrQuiz.fold(
-      (failure) {
-        this.failure = failure;
-      },
-      (quiz) {
-        failure = null;
-      },
-    );
-  }
-
-  Future<void> updatePoints({required int offsetPoints}) async {
-    final failureOrVoid = await QuizRepositoryImpl(
-      remoteDataSource: QuizRemoteDataSourceImpl(
-        dio: Dio(),
-      ),
-    ).updatePoints(
-      offsetPoints: offsetPoints,
-    );
-
-    failureOrVoid.fold(
       (failure) {
         this.failure = failure;
       },

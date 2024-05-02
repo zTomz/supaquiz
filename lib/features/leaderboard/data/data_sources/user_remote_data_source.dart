@@ -17,14 +17,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       List<UserModel> users = [];
 
       final response = await supabase.from('users').select();
-      users = response.map((e) => UserModel.fromJson(e)).toList();
+      log(response.toString());
+      users = response.map((user) => UserModel.fromMap(user)).toList();
 
       return users;
     } on PostgrestException catch (e) {
       throw ServerException(message: e.message);
+    } on TypeError catch (e) {
+      log(e.stackTrace.toString());
+      throw const ServerException(message: 'Error with getting users.');
     } catch (e) {
       // If an unexpected error occurs, print the type of the error
-      log("Error with getting users: $e, Error type: ${e.runtimeType}");
+      log("Error with getting users: ${e.runtimeType}");
+      log("Error: $e");
+
       throw const ServerException();
     }
   }

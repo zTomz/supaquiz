@@ -82,15 +82,7 @@ class QuizEndPage extends StatelessWidget {
                   ],
                 ),
                 onPressed: () async {
-                  await context.read<QuizProvider>().uploadQuizToDatabase(
-                        quiz: quizProvider.quiz!,
-                      );
-
-                  if (context.mounted) {
-                    await context.read<QuizProvider>().updatePoints(
-                          offsetPoints: quizProvider.quizInfo.totalPoints,
-                        );
-                  }
+                  await context.read<QuizProvider>().uploadQuizToDatabase();
 
                   if (context.mounted) {
                     context.router.push(

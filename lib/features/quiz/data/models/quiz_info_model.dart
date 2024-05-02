@@ -55,4 +55,15 @@ class QuizInfoModel {
           skipped: 0,
           currentQuestion: 0,
         );
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'time': time?.elapsed.inMilliseconds,
+      'name': name,
+      'totalPoints': totalPoints,
+      'correct': correct,
+      'incorrect': incorrect,
+      'skipped': skipped,
+    };
+  }
 }
