@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/functions/calculate_max_width.dart';
 
 class FormColumn extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -20,7 +19,7 @@ class FormColumn extends StatelessWidget {
       key: formKey,
       child: Center(
         child: Container(
-          width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+          width: calculateMaxWidth(context),
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: SingleChildScrollView(
             child: Column(

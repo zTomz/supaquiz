@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/config/router/app_router.dart';
 import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/functions/calculate_max_width.dart';
 import '../../../quiz/presentation/provider/quiz_provider.dart';
 import '../../data/models/public_quiz_model.dart';
 
@@ -19,13 +20,16 @@ class PublicQuizListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemCount: quizzes.length,
-        itemBuilder: (context, index) {
-          final quiz = quizzes[index];
+      child: SizedBox(
+        width: calculateMaxWidth(context),
+        child: ListView.builder(
+          itemCount: quizzes.length,
+          itemBuilder: (context, index) {
+            final quiz = quizzes[index];
 
-          return PublicQuizListTile(quiz: quiz);
-        },
+            return PublicQuizListTile(quiz: quiz);
+          },
+        ),
       ),
     );
   }

@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/functions/calculate_max_width.dart';
 import '../provider/user_provider.dart';
 import '../widgets/leaderboard_list_tile.dart';
 import '../../../../core/widgets/loading_indicator.dart';
@@ -38,7 +36,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
           ? LoadingIndicator(message: userProvider.failure?.errorMessage)
           : Center(
               child: SizedBox(
-                width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+                width: calculateMaxWidth(context),
                 child: RefreshIndicator(
                   onRefresh: () async {
                     await context.read<UserProvider>().eitherFailureOrUsers();

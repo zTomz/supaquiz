@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/config/router/app_router.dart';
 import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
+import '../../../../core/utils/functions/calculate_max_width.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../provider/quiz_provider.dart';
 import '../widgets/done_image.dart';
@@ -23,7 +22,7 @@ class QuizEndPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          width: min(MediaQuery.of(context).size.width, kMaxScreenWidth),
+          width: calculateMaxWidth(context),
           padding: const EdgeInsets.symmetric(horizontal: kLargePadding),
           child: Column(
             children: [
