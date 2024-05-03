@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/numbers.dart';
 import '../../../../core/utils/constants/strings.dart';
-import '../../../../core/utils/extensions/snack_bar_extension.dart';
+import '../../../../core/utils/functions/custom_launch_url.dart';
 import '../../../profile/presentation/widgets/dialog_list_tile.dart';
 import '../../data/app_package_info.dart';
 
@@ -35,25 +34,19 @@ class SupaQuizAboutDialog extends StatelessWidget {
           title: "Leave a star on Github",
           icon: const Icon(Icons.star_rounded, color: AppColors.primary),
           onTap: () async {
-            await _launchUrl(kGitHubRepoUrl, context);
+            await customLaunchUrl(kGitHubRepoUrl, context);
           },
         ),
         DialogListTile(
           title: "Image from studio4rt on Freepik",
           icon: const Icon(Icons.image_rounded),
           onTap: () async {
-            await _launchUrl(kFreepikImageUrl, context);
+            await customLaunchUrl(kFreepikImageUrl, context);
           },
         ),
       ],
     );
   }
 
-  Future<void> _launchUrl(String url, BuildContext context) async {
-    if (!await launchUrl(Uri.parse(url)) && context.mounted) {
-      context.showSnackBar(
-        message: 'Could not launch $url',
-      );
-    }
-  }
+  
 }
