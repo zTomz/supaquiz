@@ -25,11 +25,11 @@ class PublicQuizModel {
       quiz: QuizModel.fromJson({
         'questions': map['questions'] as List,
       }),
-      name: map['name'] as String,
-      totalPoints: map['totalPoints'] as int,
-      correct: map['correct'] as int,
-      incorrect: map['incorrect'] as int,
-      skipped: map['skipped'] as int,
+      name: (map['name'] as String?) ?? "",
+      totalPoints: (map['totalPoints'] as int?) ?? -1,
+      correct: (map['correct'] as int?) ?? -1,
+      incorrect: (map['incorrect'] as int?) ?? -1,
+      skipped: (map['skipped'] as int?) ?? -1,
     );
   }
 
